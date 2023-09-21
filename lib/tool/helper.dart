@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'dart:ui' as ui;
 import 'package:url_launcher/url_launcher.dart';
 
 class Helper {
@@ -38,7 +37,7 @@ class Helper {
 
   String dioErrorHandler(e) {
     if (e == null) return "Unknown Error";
-    if (e is! DioError) {
+    if (e is! DioException) {
       if (e is String) {
         return "Error : $e";
       } else {
@@ -60,7 +59,9 @@ class Helper {
               if (value is Map<String, dynamic>) {
                 value.forEach((key, val) => response += "\n$val");
               } else if (value is List) {
-                value.forEach((v) => response += "\n$v");
+                for (var v in value) {
+                  response += "\n$v";
+                }
               } else {
                 response += "\n$value";
               }
@@ -83,11 +84,10 @@ class Helper {
     );
   }
 
-  Future launcherIntent(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+  Future launcherIntent(Uri uri) async {
+    if (await launchUrl(uri)) {
     } else {
-      throw 'Could not launch $url';
+      throw 'Could not launch $uri';
     }
   }
 }
