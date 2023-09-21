@@ -58,12 +58,14 @@ class _FormLoginSectionState extends State<_FormLoginSection> {
       if (_formKey.currentState!.validate()) {
         setState(() {
           _isLoading = true;
-          _authBloc.add(
-            LoginEvent(
-                email: _cEmail.text,
-                username: _cUsername.text,
-                password: _cEmail.text),
-          );
+          _authBloc.add(LoginEvent(
+            email: _cEmail.text,
+            username: _cUsername.text,
+            password: _cPassword.text,
+          ));
+          _cEmail.clear();
+          _cUsername.clear();
+          _cPassword.clear();
         });
       }
     }

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:youapp_test/model/app/response_model.dart';
 
 abstract class AuthState extends Equatable {
   const AuthState();
@@ -17,7 +18,11 @@ class LoginFailedState extends AuthState {
   const LoginFailedState({required this.error});
 }
 
-class RegisterSuccessState extends AuthState {}
+class RegisterSuccessState extends AuthState {
+  final ResponseModel data;
+
+  const RegisterSuccessState({required this.data});
+}
 
 class RegisterFailedState extends AuthState {
   final Object? error;

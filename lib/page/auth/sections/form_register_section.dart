@@ -14,6 +14,9 @@ class _FormRegisterSectionState extends State<_FormRegisterSection> {
   late bool _cObscure;
   late GlobalKey<FormState> _formKey;
   String? _password;
+  late bool _isLoading;
+  late AuthBloc _authBloc;
+  late Helper _helper;
 
   @override
   void initState() {
@@ -44,6 +47,9 @@ class _FormRegisterSectionState extends State<_FormRegisterSection> {
     _obscure = true;
     _cObscure = true;
     _formKey = GlobalKey();
+    _isLoading = false;
+    _authBloc = BlocProvider.of<AuthBloc>(context);
+    _helper = Helper();
     super.initState();
   }
 
@@ -56,162 +62,195 @@ class _FormRegisterSectionState extends State<_FormRegisterSection> {
     super.dispose();
   }
 
+  void _register() async {
+    if (!_isLoading) {
+      if (_formKey.currentState!.validate()) {
+        setState(() {
+          _isLoading = true;
+          _authBloc.add(RegisterEvent(
+            email: _cEmail.text,
+            username: _cUsername.text,
+            password: _cConfirmPassword.text,
+          ));
+          _cEmail.clear();
+          _cUsername.clear();
+          _cPassword.clear();
+          _cConfirmPassword.clear();
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 23),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            formField(
-              controller: _cEmail,
-              contentPadding: const EdgeInsets.symmetric(
-                vertical: 17,
-                horizontal: 18,
-              ),
-              inputType: TextInputType.emailAddress,
-              hintText: 'Enter Email',
-              inputFormatter: [RemoveEmojiInputFormatter()],
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Please enter your email address';
-                }
-                if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
-                  return 'Please enter a valid email address';
-                }
-                return null;
-              },
-            ),
-            const SizedBox(height: 11),
-            formField(
-              controller: _cUsername,
-              contentPadding: const EdgeInsets.symmetric(
-                vertical: 17,
-                horizontal: 18,
-              ),
-              inputType: TextInputType.text,
-              hintText: 'Create Username',
-              inputFormatter: [RemoveEmojiInputFormatter()],
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'This field is required';
-                }
-                if (value.trim().length < 4) {
-                  return 'Username must be at least 4 characters in length';
-                }
-                return null;
-              },
-            ),
-            const SizedBox(height: 11),
-            formField(
-              controller: _cPassword,
-              contentPadding: const EdgeInsets.symmetric(
-                vertical: 17,
-                horizontal: 18,
-              ),
-              inputType: TextInputType.text,
-              inputFormatter: [RemoveEmojiInputFormatter()],
-              hintText: 'Create Password',
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'This field is required';
-                }
-                if (value.trim().length < 8) {
-                  return 'Password must be at least 8 characters in length';
-                }
-                return null;
-              },
-              obscure: _obscure,
-              suffixIcon: IconButton(
-                onPressed: () {
-                  setState(() {
-                    _obscure = !_obscure;
-                  });
-                },
-                icon: Icon(
-                  _obscure ? Icons.visibility_off : Icons.visibility,
-                  color: hGolden.last,
-                  size: 20,
-                ),
-              ),
-              onChanged: (value) => _password = value,
-            ),
-            const SizedBox(height: 11),
-            formField(
-              controller: _cConfirmPassword,
-              contentPadding: const EdgeInsets.symmetric(
-                vertical: 17,
-                horizontal: 18,
-              ),
-              inputType: TextInputType.text,
-              hintText: 'Confirm Password',
-              inputFormatter: [RemoveEmojiInputFormatter()],
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'This field is required';
-                }
+    return BlocListener(
+      bloc: _authBloc,
+      listener: (context, state){
+        if (state is RegisterSuccessState){
+          _isLoading = false;
+          _helper.showToast(state.data.message);
+        } else if (state is RegisterFailedState){
+          _isLoading = false;
+          _helper.showToast(state.error.toString());
+        }
+      },
+      child: BlocBuilder(
+        bloc: _authBloc,
+        builder: (context, state){
+          return Form(
+            key: _formKey,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 23),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  formField(
+                    controller: _cEmail,
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 17,
+                      horizontal: 18,
+                    ),
+                    inputType: TextInputType.emailAddress,
+                    hintText: 'Enter Email',
+                    inputFormatter: [RemoveEmojiInputFormatter()],
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Please enter your email address';
+                      }
+                      if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
+                        return 'Please enter a valid email address';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 11),
+                  formField(
+                    controller: _cUsername,
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 17,
+                      horizontal: 18,
+                    ),
+                    inputType: TextInputType.text,
+                    hintText: 'Create Username',
+                    inputFormatter: [RemoveEmojiInputFormatter()],
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'This field is required';
+                      }
+                      if (value.trim().length < 4) {
+                        return 'Username must be at least 4 characters in length';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 11),
+                  formField(
+                    controller: _cPassword,
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 17,
+                      horizontal: 18,
+                    ),
+                    inputType: TextInputType.text,
+                    inputFormatter: [RemoveEmojiInputFormatter()],
+                    hintText: 'Create Password',
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'This field is required';
+                      }
+                      if (value.trim().length < 8) {
+                        return 'Password must be at least 8 characters in length';
+                      }
+                      return null;
+                    },
+                    obscure: _obscure,
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _obscure = !_obscure;
+                        });
+                      },
+                      icon: Icon(
+                        _obscure ? Icons.visibility_off : Icons.visibility,
+                        color: hGolden.last,
+                        size: 20,
+                      ),
+                    ),
+                    onChanged: (value) => _password = value,
+                  ),
+                  const SizedBox(height: 11),
+                  formField(
+                    controller: _cConfirmPassword,
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 17,
+                      horizontal: 18,
+                    ),
+                    inputType: TextInputType.text,
+                    hintText: 'Confirm Password',
+                    inputFormatter: [RemoveEmojiInputFormatter()],
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'This field is required';
+                      }
 
-                if (value != _password) {
-                  return 'Confimation password does not match the entered password';
-                }
+                      if (value != _password) {
+                        return 'Confimation password does not match the entered password';
+                      }
 
-                return null;
-              },
-              obscure: _cObscure,
-              suffixIcon: IconButton(
-                onPressed: () {
-                  setState(() {
-                    _cObscure = !_cObscure;
-                  });
-                },
-                icon: Icon(
-                  _cObscure ? Icons.visibility_off : Icons.visibility,
-                  color: hGolden.last,
-                  size: 20,
-                ),
-              ),
-            ),
-            const SizedBox(height: 25),
-            ButtonAuth(
-              onPressed: _cEmail.text.isNotEmpty &&
-                      _cUsername.text.isNotEmpty &&
-                      _cPassword.text.isNotEmpty &&
-                      _cConfirmPassword.text.isNotEmpty
-                  ? () {}
-                  : null,
-              text: 'Register',
-              loading: false,
-              textColor: _cEmail.text.isNotEmpty &&
-                      _cUsername.text.isNotEmpty &&
-                      _cPassword.text.isNotEmpty &&
-                      _cConfirmPassword.text.isNotEmpty
-                  ? Colors.white
-                  : Colors.white.withOpacity(.3),
-              height: 48,
-              radius: 8,
-              gradient: LinearGradient(
-                colors: [
-                  _cEmail.text.isNotEmpty &&
-                          _cUsername.text.isNotEmpty &&
-                          _cPassword.text.isNotEmpty &&
-                          _cConfirmPassword.text.isNotEmpty
-                      ? hSecond1
-                      : hSecond1.withOpacity(.3),
-                  _cEmail.text.isNotEmpty &&
-                          _cUsername.text.isNotEmpty &&
-                          _cPassword.text.isNotEmpty &&
-                          _cConfirmPassword.text.isNotEmpty
-                      ? hSecond2
-                      : hSecond2.withOpacity(.3),
-                ],
-              ),
-              shadow: _cEmail.text.isNotEmpty &&
-                      _cUsername.text.isNotEmpty &&
-                      _cPassword.text.isNotEmpty &&
-                      _cConfirmPassword.text.isNotEmpty
-                  ? [
+                      return null;
+                    },
+                    obscure: _cObscure,
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _cObscure = !_cObscure;
+                        });
+                      },
+                      icon: Icon(
+                        _cObscure ? Icons.visibility_off : Icons.visibility,
+                        color: hGolden.last,
+                        size: 20,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                  ButtonAuth(
+                    onPressed: _cEmail.text.isNotEmpty &&
+                        _cUsername.text.isNotEmpty &&
+                        _cPassword.text.isNotEmpty &&
+                        _cConfirmPassword.text.isNotEmpty
+                        ? _register
+                        : null,
+                    text: 'Register',
+                    loading: _isLoading,
+                    textColor: _cEmail.text.isNotEmpty &&
+                        _cUsername.text.isNotEmpty &&
+                        _cPassword.text.isNotEmpty &&
+                        _cConfirmPassword.text.isNotEmpty
+                        ? Colors.white
+                        : Colors.white.withOpacity(.3),
+                    height: 48,
+                    radius: 8,
+                    gradient: LinearGradient(
+                      colors: [
+                        _cEmail.text.isNotEmpty &&
+                            _cUsername.text.isNotEmpty &&
+                            _cPassword.text.isNotEmpty &&
+                            _cConfirmPassword.text.isNotEmpty
+                            ? hSecond1
+                            : hSecond1.withOpacity(.3),
+                        _cEmail.text.isNotEmpty &&
+                            _cUsername.text.isNotEmpty &&
+                            _cPassword.text.isNotEmpty &&
+                            _cConfirmPassword.text.isNotEmpty
+                            ? hSecond2
+                            : hSecond2.withOpacity(.3),
+                      ],
+                    ),
+                    shadow: _cEmail.text.isNotEmpty &&
+                        _cUsername.text.isNotEmpty &&
+                        _cPassword.text.isNotEmpty &&
+                        _cConfirmPassword.text.isNotEmpty
+                        ? [
                       BoxShadow(
                         offset: const Offset(0, 10),
                         color: hSecond1.withOpacity(.5),
@@ -223,10 +262,13 @@ class _FormRegisterSectionState extends State<_FormRegisterSection> {
                         blurRadius: 18.0,
                       ),
                     ]
-                  : [],
-            )
-          ],
-        ),
+                        : [],
+                  )
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

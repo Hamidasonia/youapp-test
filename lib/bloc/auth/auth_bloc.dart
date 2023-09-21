@@ -54,8 +54,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         username: event.username,
         password: event.password,
       );
-      ResponseModel.fromJson(res.data);
-      yield RegisterSuccessState();
+      ResponseModel data = ResponseModel.fromJson(res.data);
+      yield RegisterSuccessState(data: data);
     } catch (e) {
       yield RegisterFailedState(error: e);
       printLog(e);
