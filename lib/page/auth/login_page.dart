@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:remove_emoji_input_formatter/remove_emoji_input_formatter.dart';
+import 'package:youapp_test/bloc/auth/auth_bloc.dart';
+import 'package:youapp_test/bloc/auth/auth_event.dart';
+import 'package:youapp_test/bloc/auth/auth_state.dart';
 import 'package:youapp_test/common/constans.dart';
 import 'package:youapp_test/common/styles.dart';
+import 'package:youapp_test/model/app/singleton_model.dart';
 import 'package:youapp_test/page/auth/components/components.dart';
 import 'package:youapp_test/page/auth/register_page.dart';
+import 'package:youapp_test/page/home/home_page.dart';
 import 'package:youapp_test/tool/helper.dart';
 
 part 'sections/form_login_section.dart';

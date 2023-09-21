@@ -36,12 +36,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       LoginModel login = LoginModel.fromJson(res.data);
       SingletonModel.shared.login = login;
       SPData.save<String>(
-          kDUser, jsonEncode(SingletonModel.shared.user!.toJson()));
+          kDUser, jsonEncode(SingletonModel.shared.login!.toJson()));
       SingletonModel.shared.isLoggedIn = true;
       yield LoginSuccessState();
     } catch (e) {
       yield LoginFailedState(error: e);
       printLog(e);
+      printLog('INI ERRORNYA : $e');
     }
   }
 

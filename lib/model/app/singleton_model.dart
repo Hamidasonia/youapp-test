@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:youapp_test/model/login_model.dart';
-import 'package:youapp_test/model/user_model.dart';
 
 class SingletonModel {
   static SingletonModel? _singleton;
@@ -19,7 +18,6 @@ class SingletonModel {
   static SingletonModel get shared => _singleton ?? SingletonModel._internal();
 
   late bool isLoggedIn;
-  UserModel? user;
   LoginModel? login;
   BuildContext? context;
 }

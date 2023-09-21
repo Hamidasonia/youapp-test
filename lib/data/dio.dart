@@ -49,7 +49,6 @@ class Dio {
                   route: OnBoardPage.name,
                 );
                 SingletonModel.shared.isLoggedIn = false;
-                SingletonModel.shared.user = null;
                 SingletonModel.shared.login = null;
               }
             }
