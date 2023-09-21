@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youapp_test/common/configs.dart';
 import 'package:youapp_test/page/splash_page.dart';
 
 class YouAppTest extends StatefulWidget {
@@ -11,9 +12,10 @@ class YouAppTest extends StatefulWidget {
 class _YouAppTestState extends State<YouAppTest> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashPage(),
+      home: const SplashPage(),
+      routes: routes,
     );
   }
 }

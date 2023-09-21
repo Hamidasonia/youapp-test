@@ -14,7 +14,7 @@ class AppTextStyle {
   }) {
     return GoogleFonts.montserrat().copyWith(
       fontSize: fontSize ?? 14,
-      color: color ?? hBlack,
+      color: color ?? hWhite,
       fontWeight: fontWeight ?? FontWeight.w400,
       decoration: textDecoration,
       height: height,
@@ -30,7 +30,7 @@ class AppTextStyle {
     return GoogleFonts.montserrat().copyWith(
       fontWeight: FontWeight.w500,
       fontSize: fontSize ?? 14,
-      color: color ?? hBlack,
+      color: color ?? hWhite,
       decoration: textDecoration,
       height: height,
     );
@@ -45,7 +45,7 @@ class AppTextStyle {
     return GoogleFonts.montserrat().copyWith(
       fontWeight: FontWeight.w600,
       fontSize: fontSize ?? 14,
-      color: color ?? hBlack,
+      color: color ?? hWhite,
       decoration: textDecoration,
       height: height,
     );
@@ -60,22 +60,22 @@ class AppTextStyle {
     return GoogleFonts.montserrat().copyWith(
       fontWeight: FontWeight.w700,
       fontSize: fontSize ?? 14,
-      color: color ?? hBlack,
+      color: color ?? hWhite,
       decoration: textDecoration,
       height: height,
     );
   }
 
-  static TextStyle normal({
+  static TextStyle regular({
     TextDecoration? textDecoration,
     double? fontSize,
     Color? color,
     double? height,
     FontWeight? fontWeight,
   }) {
-    return GoogleFonts.nunito().copyWith(
+    return GoogleFonts.inter().copyWith(
       fontSize: fontSize ?? 14,
-      color: color ?? hBlack,
+      color: color ?? hWhite,
       fontWeight: fontWeight ?? FontWeight.w400,
       decoration: textDecoration,
       height: height,
@@ -88,10 +88,10 @@ class AppTextStyle {
     Color? color,
     double? height,
   }) {
-    return GoogleFonts.nunito().copyWith(
+    return GoogleFonts.inter().copyWith(
       fontWeight: FontWeight.w500,
       fontSize: fontSize ?? 14,
-      color: color ?? hBlack,
+      color: color ?? hWhite,
       decoration: textDecoration,
       height: height,
     );
@@ -103,10 +103,10 @@ class AppTextStyle {
     Color? color,
     double? height,
   }) {
-    return GoogleFonts.nunito().copyWith(
+    return GoogleFonts.inter().copyWith(
       fontWeight: FontWeight.w600,
       fontSize: fontSize ?? 14,
-      color: color ?? hBlack,
+      color: color ?? hWhite,
       decoration: textDecoration,
       height: height,
     );
@@ -118,10 +118,25 @@ class AppTextStyle {
     Color? color,
     double? height,
   }) {
-    return GoogleFonts.nunito().copyWith(
+    return GoogleFonts.inter().copyWith(
       fontWeight: FontWeight.w700,
       fontSize: fontSize ?? 14,
-      color: color ?? hBlack,
+      color: color ?? hWhite,
+      decoration: textDecoration,
+      height: height,
+    );
+  }
+
+  static TextStyle extraBold({
+    TextDecoration? textDecoration,
+    double? fontSize,
+    Color? color,
+    double? height,
+}) {
+    return GoogleFonts.inter().copyWith(
+      fontWeight: FontWeight.w800,
+      fontSize: fontSize ?? 14,
+      color: color ?? hWhite,
       decoration: textDecoration,
       height: height,
     );
