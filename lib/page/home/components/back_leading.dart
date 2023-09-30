@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:youapp_test/common/styles.dart';
 
-class BackAuth extends StatelessWidget {
-  const BackAuth({super.key});
+class BackLeading extends StatelessWidget {
+  const BackLeading({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => Navigator.pop(context),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 18),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 18),
+      child: InkWell(
+        onTap: () => Navigator.pop(context),
         child: Row(
           children: [
             Icon(

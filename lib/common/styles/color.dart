@@ -8,6 +8,8 @@ final hPrimary2 = HexColor("#0D1D23");
 final hPrimary3 = HexColor("#09141A");
 final hSecond1 = HexColor("#62CDCB");
 final hSecond2 = HexColor("#4599DB");
+final hCard = HexColor("#162329");
+final hCard2 = HexColor("#0E191F");
 
 final hGolden = [
   HexColor("#94783E"),
@@ -17,6 +19,12 @@ final hGolden = [
   HexColor("#D5BE88"),
   HexColor("#F8FAE5"),
   HexColor("#D5BE88"),
+];
+
+final hBlue = [
+  HexColor("#ABFFFD"),
+  HexColor("#4599DB"),
+  HexColor("#AADAFF"),
 ];
 
 final MaterialColor mBlack = _convertMaterial(0, 0, 0);
