@@ -9,6 +9,7 @@ class _AboutSectionsState extends State<_AboutSections> {
   late bool _editAbout;
   late String _selectedValue;
   late List<String> _options;
+  late SingletonModel _model;
 
   @override
   void initState() {
@@ -18,6 +19,7 @@ class _AboutSectionsState extends State<_AboutSections> {
       'Male',
       'Female',
     ];
+    _model = SingletonModel.withContext(context);
     super.initState();
   }
 
@@ -49,7 +51,7 @@ class _AboutSectionsState extends State<_AboutSections> {
                     _editAbout = !_editAbout;
                   });
                   if (!_editAbout) {
-                    Helper().showToast('BERHASIL SAVE');
+                    Helper().showToast('Success update data');
                   }
                 },
                 child: !_editAbout
@@ -67,12 +69,93 @@ class _AboutSectionsState extends State<_AboutSections> {
             ],
           ),
           const SizedBox(height: 33),
-          // ntar disini kondisinya is Empty - IsNotEmpty
           !_editAbout
-              ? Text(
-                  'Add in your your to help others know you better',
-                  style: AppTextStyle.medium(color: hWhite.withOpacity(.52)),
-                )
+              ? _model.user!.data.name!.isEmpty
+                  ? Text(
+                      'Add in your your to help others know you better',
+                      style:
+                          AppTextStyle.medium(color: hWhite.withOpacity(.52)),
+                    )
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              'Birthday: ',
+                              style: AppTextStyle.medium(
+                                color: hWhite.withOpacity(.33),
+                              ),
+                            ),
+                            Text(
+                              _model.user!.data.birthday!,
+                              style: AppTextStyle.medium(),
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 15),
+                        Row(
+                          children: [
+                            Text(
+                              'Horoscope: ',
+                              style: AppTextStyle.medium(
+                                color: hWhite.withOpacity(.33),
+                              ),
+                            ),
+                            Text(
+                              _model.user!.data.horoscope!,
+                              style: AppTextStyle.medium(),
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 15),
+                        Row(
+                          children: [
+                            Text(
+                              'Zodiac: ',
+                              style: AppTextStyle.medium(
+                                color: hWhite.withOpacity(.33),
+                              ),
+                            ),
+                            Text(
+                              _model.user!.data.zodiac!,
+                              style: AppTextStyle.medium(),
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 15),
+                        Row(
+                          children: [
+                            Text(
+                              'Height: ',
+                              style: AppTextStyle.medium(
+                                color: hWhite.withOpacity(.33),
+                              ),
+                            ),
+                            Text(
+                              '${_model.user!.data.height} cm',
+                              style: AppTextStyle.medium(),
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 15),
+                        Row(
+                          children: [
+                            Text(
+                              'Weight: ',
+                              style: AppTextStyle.medium(
+                                color: hWhite.withOpacity(.33),
+                              ),
+                            ),
+                            Text(
+                              '${_model.user!.data.weight} kg',
+                              style: AppTextStyle.medium(),
+                            )
+                          ],
+                        ),
+                      ],
+                    )
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -175,33 +258,33 @@ class _AboutSectionsState extends State<_AboutSections> {
                       ],
                     ),
                     const SizedBox(height: 12),
-                    const _FormSection(
+                    _FormSection(
                       title: 'Birthday:',
-                      hint: 'DD MM YYYY',
+                      hint: _model.user?.data.birthday ?? 'DD MM YYYY',
                       readOnly: true,
                     ),
                     const SizedBox(height: 12),
-                    const _FormSection(
+                    _FormSection(
                       title: 'Horoscope:',
-                      hint: '--',
+                      hint: _model.user?.data.horoscope ?? '--',
                       readOnly: true,
                     ),
                     const SizedBox(height: 12),
-                    const _FormSection(
+                    _FormSection(
                       title: 'Zodiac',
-                      hint: '--',
+                      hint: _model.user?.data.zodiac ?? '--',
                       readOnly: true,
                     ),
                     const SizedBox(height: 12),
-                    const _FormSection(
+                    _FormSection(
                       title: 'Height',
-                      hint: 'Add height',
+                      hint: '${_model.user?.data.height ?? 'Add height'}',
                       readOnly: false,
                     ),
                     const SizedBox(height: 12),
-                    const _FormSection(
+                    _FormSection(
                       title: 'Weight',
-                      hint: 'Add weight',
+                      hint: '${_model.user?.data.height ?? 'Add weight'}',
                       readOnly: false,
                     ),
                   ],

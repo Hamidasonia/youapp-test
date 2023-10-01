@@ -21,23 +21,23 @@ class UserModel {
 class Data {
   String email;
   String username;
-  String name;
-  String birthday;
-  String horoscope;
-  String zodiac;
-  int height;
-  int weight;
+  String? name;
+  String? birthday;
+  String? horoscope;
+  String? zodiac;
+  int? height;
+  int? weight;
   List<String> interests;
 
   Data({
     required this.email,
     required this.username,
-    required this.name,
-    required this.birthday,
-    required this.horoscope,
-    required this.zodiac,
-    required this.height,
-    required this.weight,
+    this.name,
+    this.birthday,
+    this.horoscope,
+    this.zodiac,
+    this.height,
+    this.weight,
     required this.interests,
   });
 

@@ -46,8 +46,8 @@ class _User {
   Future<dio.Response> create({
     required String name,
     required String birthday,
-    required String height,
-    required String weight,
+    required int height,
+    required int weight,
     required List<String> interests,
   }) async {
     return _repo.user.create(data: {
@@ -66,8 +66,8 @@ class _User {
   Future<dio.Response> update({
     String? name,
     String? birthday,
-    String? height,
-    String? weight,
+    int? height,
+    int? weight,
     List<String>? interests,
   }) async {
     return _repo.user.update(data: {

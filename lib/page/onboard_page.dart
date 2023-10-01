@@ -5,18 +5,30 @@ import 'package:youapp_test/page/auth/components/components.dart';
 import 'package:youapp_test/page/auth/login_page.dart';
 import 'package:youapp_test/tool/helper.dart';
 
-class OnBoardPage extends StatelessWidget {
+class OnBoardPage extends StatefulWidget {
   static const String name = "/onboard";
+  const OnBoardPage({super.key});
 
-  const OnBoardPage({Key? key}) : super(key: key);
+  @override
+  State<OnBoardPage> createState() => _OnBoardPageState();
+}
+
+class _OnBoardPageState extends State<OnBoardPage> {
+  final _image = const AssetImage(kImgBg);
+
+  @override
+  void didChangeDependencies() {
+    precacheImage(_image, context);
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(kImgBg),
+            image: _image,
             fit: BoxFit.cover,
           ),
         ),

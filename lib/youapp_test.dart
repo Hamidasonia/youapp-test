@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:youapp_test/bloc/auth/auth_bloc.dart';
 import 'package:youapp_test/bloc/auth/auth_state.dart';
+import 'package:youapp_test/bloc/user/user_bloc.dart';
+import 'package:youapp_test/bloc/user/user_state.dart';
 import 'package:youapp_test/common/configs.dart';
 import 'package:youapp_test/page/splash_page.dart';
 
@@ -19,6 +21,9 @@ class _YouAppTestState extends State<YouAppTest> {
       providers: [
         BlocProvider<AuthBloc>(
           create: (BuildContext context) => AuthBloc(AuthInitialState()),
+        ),
+        BlocProvider<UserBloc>(
+          create: (BuildContext context) => UserBloc(UserInitialState()),
         )
       ],
       child: MaterialApp(

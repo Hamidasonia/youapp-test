@@ -1,12 +1,9 @@
 part of '../home_page.dart';
 
-class _HeaderSections extends StatefulWidget {
+class _HeaderSections extends StatelessWidget {
+  final UserModel user;
+  const _HeaderSections({required this.user});
 
-  @override
-  State<_HeaderSections> createState() => _HeaderSectionsState();
-}
-
-class _HeaderSectionsState extends State<_HeaderSections> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,10 +19,11 @@ class _HeaderSectionsState extends State<_HeaderSections> {
       child: Align(
         alignment: Alignment.bottomLeft,
         child: Text(
-          '@jhondoe123',
+          '@${user.data.username}',
           style: AppTextStyle.bold(fontSize: 16),
         ),
       ),
     );
   }
 }
+

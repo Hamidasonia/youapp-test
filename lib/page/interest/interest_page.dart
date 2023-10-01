@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:textfield_tags/textfield_tags.dart';
 import 'package:youapp_test/common/constans.dart';
 import 'package:youapp_test/common/styles.dart';
+import 'package:youapp_test/model/app/singleton_model.dart';
+import 'package:youapp_test/model/user_model.dart';
 import 'package:youapp_test/page/home/components/components.dart';
 import 'package:youapp_test/page/home/home_page.dart';
 import 'package:youapp_test/tool/helper.dart';
@@ -20,6 +22,7 @@ class InterestPage extends StatefulWidget {
 class _InterestPageState extends State<InterestPage> {
   late double _distanceToField;
   late TextfieldTagsController _controller;
+  late UserModel _user;
 
   @override
   void didChangeDependencies() {
@@ -37,6 +40,7 @@ class _InterestPageState extends State<InterestPage> {
   void initState() {
     super.initState();
     _controller = TextfieldTagsController();
+    _user = SingletonModel.withContext(context).user!;
   }
 
   @override
@@ -103,6 +107,7 @@ class _InterestPageState extends State<InterestPage> {
                   textfieldTagsController: _controller,
                   textSeparators: const [' '],
                   letterCase: LetterCase.normal,
+                  initialTags: _user.data.interests,
                   validator: (String tag) {
                     if (tag == 'Eat') {
                       return 'Please enter again';

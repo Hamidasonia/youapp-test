@@ -25,7 +25,7 @@ class Dio {
             "Accept": "application/json",
             "Content-Type": "application/json",
             if (SingletonModel.shared.isLoggedIn)
-              "Authorization": SingletonModel.shared.login!.accessToken,
+              "x-access-token": SingletonModel.shared.login!.accessToken,
           },
     );
     _dio.interceptors.add(

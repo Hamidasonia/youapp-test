@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:youapp_test/model/login_model.dart';
+import 'package:youapp_test/model/user_model.dart';
 
 class SingletonModel {
   static SingletonModel? _singleton;
@@ -19,5 +20,6 @@ class SingletonModel {
 
   late bool isLoggedIn;
   LoginModel? login;
+  UserModel? user;
   BuildContext? context;
 }
