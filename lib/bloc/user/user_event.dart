@@ -13,17 +13,17 @@ class GetUserEvent extends UserEvent {
 }
 
 class UpdateUserEvent extends UserEvent {
-  final String name;
-  final String birthday;
-  final int height;
-  final int weight;
+  final String? name;
+  final String? birthday;
+  final int? height;
+  final int? weight;
   final List<String>? interest;
 
   const UpdateUserEvent({
-    required this.name,
-    required this.birthday,
-    required this.height,
-    required this.weight,
+    this.name,
+    this.birthday,
+    this.height,
+    this.weight,
     this.interest,
   });
 

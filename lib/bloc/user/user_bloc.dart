@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:youapp_test/bloc/user/user_event.dart';
 import 'package:youapp_test/bloc/user/user_state.dart';
 import 'package:youapp_test/common/constans.dart';
 import 'package:youapp_test/data/request.dart';
+import 'package:youapp_test/data/sp_data.dart';
+import 'package:youapp_test/model/app/singleton_model.dart';
 import 'package:youapp_test/model/user_model.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
@@ -27,6 +31,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     try {
       Response res = await Request().user.get();
       UserModel user = UserModel.fromJson(res.data);
+      SingletonModel.shared.user = user;
+      SPData.save<String>(
+          kDUser, jsonEncode(SingletonModel.shared.user!.toJson()));
       yield GetUserSuccessState(data: user);
     } catch (e) {
       yield GetUserFailedState(error: e);
@@ -45,6 +52,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
             interests: event.interest,
           );
       UserModel user = UserModel.fromJson(res.data);
+      SingletonModel.shared.user = user;
+      SPData.save<String>(
+          kDUser, jsonEncode(SingletonModel.shared.user!.toJson()));
       yield UpdateUserSuccessState(data: user);
     } catch (e) {
       yield UpdateUserFailedState(error: e);

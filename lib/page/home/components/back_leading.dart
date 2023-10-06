@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:youapp_test/common/styles.dart';
 
 class BackLeading extends StatelessWidget {
-  const BackLeading({super.key});
+  final void Function() onTap;
+  const BackLeading({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18),
       child: InkWell(
-        onTap: () => Navigator.pop(context),
+        onTap: onTap,
         child: Row(
           children: [
             Icon(

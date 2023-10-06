@@ -4,11 +4,15 @@ class _FormSection extends StatelessWidget {
   final String title;
   final String hint;
   final bool? readOnly;
+  final TextEditingController controller;
+  final void Function()? onTap;
 
-  const _FormSection({
+   const _FormSection({
     required this.title,
     required this.hint,
-    required this.readOnly
+    required this.readOnly,
+    required this.controller,
+    this.onTap,
   });
 
   @override
@@ -25,12 +29,14 @@ class _FormSection extends StatelessWidget {
             height: 36,
             width: 202,
             child: formFieldEdit(
+              controller: controller,
               contentPadding: const EdgeInsets.symmetric(
                 vertical: 10,
                 horizontal: 20,
               ),
               hintText: hint,
-              readOnly: readOnly ?? false
+              readOnly: readOnly ?? false,
+              onTap: onTap
             ),
           ),
         )

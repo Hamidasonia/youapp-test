@@ -8,14 +8,14 @@ class UserModel {
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-    message: json["message"],
-    data: Data.fromJson(json["data"]),
-  );
+        message: json["message"],
+        data: Data.fromJson(json["data"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "message": message,
-    "data": data.toJson(),
-  };
+        "message": message,
+        "data": data.toJson(),
+      };
 }
 
 class Data {
@@ -27,7 +27,7 @@ class Data {
   String? zodiac;
   int? height;
   int? weight;
-  List<String> interests;
+  List<String>? interests;
 
   Data({
     required this.email,
@@ -38,30 +38,34 @@ class Data {
     this.zodiac,
     this.height,
     this.weight,
-    required this.interests,
+    this.interests,
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    email: json["email"],
-    username: json["username"],
-    name: json["name"],
-    birthday: json["birthday"],
-    horoscope: json["horoscope"],
-    zodiac: json["zodiac"],
-    height: json["height"],
-    weight: json["weight"],
-    interests: List<String>.from(json["interests"].map((x) => x)),
-  );
+        email: json["email"],
+        username: json["username"],
+        name: json["name"],
+        birthday: json["birthday"],
+        horoscope: json["horoscope"],
+        zodiac: json["zodiac"],
+        height: json["height"],
+        weight: json["weight"],
+        interests: json["interests"] != null
+            ? List<String>.from(json["interests"].map((x) => x))
+            : null,
+      );
 
   Map<String, dynamic> toJson() => {
-    "email": email,
-    "username": username,
-    "name": name,
-    "birthday": birthday,
-    "horoscope": horoscope,
-    "zodiac": zodiac,
-    "height": height,
-    "weight": weight,
-    "interests": List<dynamic>.from(interests.map((x) => x)),
-  };
+        "email": email,
+        "username": username,
+        "name": name,
+        "birthday": birthday,
+        "horoscope": horoscope,
+        "zodiac": zodiac,
+        "height": height,
+        "weight": weight,
+        "interests": interests != null
+            ? List<dynamic>.from(interests!.map((x) => x))
+            : null,
+      };
 }

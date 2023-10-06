@@ -8,6 +8,7 @@ import 'package:youapp_test/common/styles.dart';
 import 'package:youapp_test/data/sp_data.dart';
 import 'package:youapp_test/model/app/singleton_model.dart';
 import 'package:youapp_test/model/login_model.dart';
+import 'package:youapp_test/model/user_model.dart';
 import 'package:youapp_test/page/home/home_page.dart';
 import 'package:youapp_test/page/onboard_page.dart';
 import 'package:youapp_test/tool/helper.dart';
@@ -35,10 +36,12 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void _checkData() async {
+    String? login = await SPData.load(kDLogin);
     String? user = await SPData.load(kDUser);
-    _model.isLoggedIn = user != null;
+    _model.isLoggedIn = (login != null && user != null);
     if (_model.isLoggedIn) {
-      _model.login = LoginModel.fromJson(jsonDecode(user!));
+      _model.login = LoginModel.fromJson(jsonDecode(login!));
+      _model.user = UserModel.fromJson(jsonDecode(user!));
     }
     await Future.delayed(const Duration(seconds: 2));
     _helper.moveToPage(

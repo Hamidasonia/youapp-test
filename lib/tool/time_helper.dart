@@ -15,7 +15,7 @@ class TimeHelper {
   }
 
   static String convertToBirthday(String date) {
-    return DateFormat('dd / MMM / yyyy, (Age ${DateTime.now().year} - yyyy')
+    return DateFormat('MM/dd/yyyy')
         .format(DateTime.parse(date).toLocal());
   }
 

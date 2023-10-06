@@ -41,7 +41,7 @@ class _InterestSections extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 33),
-          user.data.interests.isEmpty
+          user.data.interests == null
               ? Text(
                   'Add in your interest to find a better match',
                   style: AppTextStyle.medium(color: hWhite.withOpacity(.52)),
@@ -58,7 +58,7 @@ class _InterestSections extends StatelessWidget {
   }
 
   generateTags() {
-    return user.data.interests.map((tag) => getChip(tag)).toList();
+    return user.data.interests?.map((tag) => getChip(tag)).toList();
   }
 
   getChip(name) {

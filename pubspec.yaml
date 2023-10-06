@@ -51,10 +51,14 @@ dependencies:
   remove_emoji_input_formatter: ^0.0.1+1
   textfield_tags: ^2.0.2
   shimmer: ^3.0.0
+  image_picker: ^1.0.4
+  welltested_annotation:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mockito:
+  build_runner:
 
 dependency_overrides:
   intl: any
