@@ -29,7 +29,7 @@ class App extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => GetIt.I<AuthBloc>()),
+        BlocProvider(create: (context) => GetIt.I<AuthBloc>()..add(ProfileAuthEvent())),
       ],
       child: const _AppWidget()
     );

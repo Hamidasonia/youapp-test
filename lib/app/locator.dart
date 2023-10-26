@@ -36,7 +36,8 @@ Future<void> setupLocator() async {
   getIt
     ..registerLazySingleton(() => LoginUseCase(getIt()))
     ..registerLazySingleton(() => RegisterUseCase(getIt()))
-    ..registerLazySingleton(() => LogoutUseCase(getIt()));
+    ..registerLazySingleton(() => LogoutUseCase(getIt()))
+    ..registerLazySingleton(() => ProfileUseCase(getIt()));
 
   // Presentation
   getIt.registerFactory(
@@ -44,6 +45,7 @@ Future<void> setupLocator() async {
       loginUseCase: getIt(),
       registerUseCase: getIt(),
       logoutUseCase: getIt(),
+      profileUseCase: getIt(),
     ),
   );
 }
@@ -69,7 +71,7 @@ Future<void> _setupCore() async {
   getIt.registerLazySingleton<HiveInterface>(() => Hive);
 
   getIt.registerLazySingleton<NetworkInfo>(
-        () => NetworkInfoImpl(getIt<InternetConnectionChecker>()),
+    () => NetworkInfoImpl(getIt<InternetConnectionChecker>()),
   );
 
   // ------------------------ Settings ----------------------------------

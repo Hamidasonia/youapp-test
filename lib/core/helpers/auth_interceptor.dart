@@ -16,7 +16,7 @@ class AuthHttpInterceptor extends InterceptorsWrapper {
     final optionHeaders = <String, Object>{};
 
     if (token != null) {
-      optionHeaders.putIfAbsent('Authorization', () => 'Bearer $token');
+      optionHeaders.putIfAbsent('x-access-token', () => token);
     }
 
     options.headers.addAll(optionHeaders);

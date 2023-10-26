@@ -8,6 +8,7 @@ class AuthState extends Equatable {
     this.status = AuthStatus.initial,
     this.login,
     this.register,
+    this.user,
     this.version = '1.0.0',
   });
 
@@ -20,12 +21,14 @@ class AuthState extends Equatable {
   final Failure? failure;
   final Login? login;
   final Register? register;
+  final User? user;
 
   AuthState copyWith({
     AuthStatus? status,
     Failure? failure,
     Login? login,
     Register? register,
+    User? user,
     String? version,
   }) {
     return AuthState(
@@ -33,10 +36,11 @@ class AuthState extends Equatable {
       status: status ?? this.status,
       login: login ?? this.login,
       register: register ?? this.register,
+      user: user ?? this.user,
       version: version ?? this.version,
     );
   }
 
   @override
-  List<Object?> get props => [failure, version, status, login, register];
+  List<Object?> get props => [failure, version, status, login, register, user];
 }

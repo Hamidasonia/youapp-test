@@ -1,5 +1,6 @@
 import 'package:youapp_test/core/core.dart';
 import 'package:youapp_test/features/auth/auth.dart';
+import 'package:youapp_test/features/home/home.dart';
 import 'package:dartz/dartz.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -51,6 +52,17 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, bool>> logout() async {
     try {
       return const Right(true);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message, code: e.code));
+    }
+  }
+
+  @override
+  Future<Either<Failure, User>> profile() async {
+    try {
+      final result = await authApiDataSource.profile();
+
+      return Right(result.toEntity());
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message, code: e.code));
     }
