@@ -8,11 +8,11 @@ part of 'login_model.dart';
 
 LoginModel _$LoginModelFromJson(Map<String, dynamic> json) => LoginModel(
       message: json['message'] as String,
-      accessToken: json['accessToken'] as String,
+      accessToken: json['access_token'] as String,
     );
 
 Map<String, dynamic> _$LoginModelToJson(LoginModel instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'accessToken': instance.accessToken,
+      'access_token': instance.accessToken,
     };

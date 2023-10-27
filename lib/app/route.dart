@@ -29,6 +29,11 @@ Route<dynamic> route(RouteSettings settings) {
         builder: (_) => const HomePage(),
         settings: settings,
       );
+    case Interest.routeName:
+      return MaterialPageRoute(
+        builder: (_) => const Interest(),
+        settings: settings,
+      );
     default:
       return CupertinoPageRoute(builder: (_) {
         return const Scaffold(

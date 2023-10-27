@@ -7,6 +7,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:youapp_test/core/core.dart';
 import 'package:youapp_test/features/auth/auth.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:youapp_test/features/home/home.dart';
 
 import 'config.dart';
 
@@ -48,12 +49,34 @@ Future<void> setupLocator() async {
       profileUseCase: getIt(),
     ),
   );
+
+  // ------------------------ Home ----------------------------------
+
+  // Data
+  getIt
+    ..registerLazySingleton<HomeApiDataSource>(
+        () => HomeApiDataSourceImpl(getIt()))
+    ..registerLazySingleton<HomeRepository>(
+        () => HomeRepositoryImpl(getIt()));
+
+  // Domain
+  getIt.registerLazySingleton(() => UpdateProfileUseCase(getIt()));
+
+  // Presentation
+  getIt.registerFactory(
+    () => HomeBloc(
+      updateProfileUseCase: getIt(),
+    ),
+  );
 }
 
 Future<void> _setupCore() async {
   EquatableConfig.stringify = AppConfig.autoStringifyEquatable;
 
   getIt.registerLazySingleton(InternetConnectionChecker.new);
+  getIt.registerLazySingleton(
+    () => CaptureErrorUseCase(),
+  );
   getIt.registerLazySingleton(
     () => Dio()
       ..options = BaseOptions(baseUrl: AppConfig.baseUrl.value)

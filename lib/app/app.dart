@@ -5,6 +5,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get_it/get_it.dart';
 import 'package:youapp_test/core/core.dart';
 import 'package:youapp_test/features/auth/auth.dart';
+import 'package:youapp_test/features/home/home.dart';
 import 'package:youapp_test/features/splash/page.dart';
 
 import 'config.dart';
@@ -18,7 +19,7 @@ class App extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor:
-        AppConfig.transparentStatusBar ? Colors.transparent : null,
+            AppConfig.transparentStatusBar ? Colors.transparent : null,
         statusBarIconBrightness: Brightness.light,
       ),
     );
@@ -27,12 +28,11 @@ class App extends StatelessWidget {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
     );
 
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => GetIt.I<AuthBloc>()..add(ProfileAuthEvent())),
-      ],
-      child: const _AppWidget()
-    );
+    return MultiBlocProvider(providers: [
+      BlocProvider(
+          create: (context) => GetIt.I<AuthBloc>()..add(ProfileAuthEvent())),
+      BlocProvider(create: (context) => GetIt.I<HomeBloc>()),
+    ], child: const _AppWidget());
   }
 }
 
@@ -58,6 +58,7 @@ class _AppWidgetState extends State<_AppWidget> {
       ..animationStyle = EasyLoadingAnimationStyle.offset;
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -71,4 +72,3 @@ class _AppWidgetState extends State<_AppWidget> {
     );
   }
 }
-

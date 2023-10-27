@@ -20,6 +20,7 @@ class LoginPage extends StatelessWidget {
         if (state.status == AuthStatus.loading) {
           EasyLoading.show(status: 'Loading...');
         } else if (state.status == AuthStatus.authorized) {
+          context.read<AuthBloc>().add(ProfileAuthEvent());
           EasyLoading.dismiss();
           // Route ke Home Page
           Navigator.pushNamedAndRemoveUntil(

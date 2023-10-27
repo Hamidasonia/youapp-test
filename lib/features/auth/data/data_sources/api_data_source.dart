@@ -83,9 +83,9 @@ class AuthApiDataSourceImpl implements AuthApiDataSource {
   @override
   Future<bool> logout() async {
     try {
-      await authLocalSource.clearCache();
+      authLocalSource.clearCache();
 
-      return true;
+      return false;
     } on DioException catch (e) {
       throw e.toServerException();
     } catch (e) {
