@@ -156,7 +156,7 @@ class _AboutSectionState extends State<_AboutSection> {
                         ),
                         const SizedBox(height: 33),
                         !_editAbout
-                            ? state.user!.name!.isEmpty
+                            ? widget.name.isEmpty
                                 ? Text(
                                     'Add in your your to help others know you better',
                                     style: AppTextStyle.medium(
