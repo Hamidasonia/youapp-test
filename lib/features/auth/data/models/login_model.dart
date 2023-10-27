@@ -7,17 +7,17 @@ part 'login_model.g.dart';
 @JsonSerializable()
 class LoginModel extends Equatable {
   final String message;
-  final String accessToken;
+  final String access_token;
 
   const LoginModel({
     required this.message,
-    required this.accessToken,
+    required this.access_token,
   });
 
   Login toEntity() {
     return Login(
       message: message,
-      accessToken: accessToken,
+      accessToken: access_token,
     );
   }
 
@@ -27,5 +27,5 @@ class LoginModel extends Equatable {
   Map<String, dynamic> toJson() => _$LoginModelToJson(this);
 
   @override
-  List<Object?> get props => [message, accessToken];
+  List<Object?> get props => [message, access_token];
 }
