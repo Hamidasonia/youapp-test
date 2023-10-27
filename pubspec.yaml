@@ -12,7 +12,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-
   bloc_concurrency: ^0.2.2
   cached_network_image: ^3.3.0
   cupertino_icons: ^1.0.2
@@ -23,7 +22,7 @@ dependencies:
   permission_handler: ^10.2.0
   shared_preferences: ^2.1.1
   url_launcher: ^6.1.11
-  google_fonts: ^4.0.5
+  google_fonts: ^4.0.4
   fluttertoast: ^8.2.2
   flutter_svg: ^2.0.7
   intl: ^0.18.1
@@ -31,7 +30,7 @@ dependencies:
   textfield_tags: ^2.0.2
   shimmer: ^3.0.0
   image_picker: ^1.0.4
-  welltested: ^0.0.1
+  welltested: ^2.1.4
   formz: ^0.6.1
   get_it: ^7.6.4
   internet_connection_checker: ^1.0.0+1
@@ -39,6 +38,12 @@ dependencies:
   path_provider: ^2.1.1
   package_info_plus: ^4.1.0
   stream_transform: ^2.1.0
+  dartz: ^0.10.1
+  hive: ^2.2.3
+  flutter_easyloading: ^3.0.5
+  http: ^0.13.0
+  azure_application_insights: ^3.1.0
+
 
 dev_dependencies:
   flutter_test:

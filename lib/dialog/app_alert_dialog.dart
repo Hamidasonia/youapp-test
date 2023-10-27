@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:youapp_test/common/styles.dart';
+import 'package:youapp_test/core/core.dart';
 
 class AppAlertDialog extends StatefulWidget {
   final String title;
@@ -54,7 +54,7 @@ class _AppAlertDialogState extends State<AppAlertDialog> {
             widget.rightButtonText,
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: widget.rightButtonColor ?? hSecond1,
+              color: widget.rightButtonColor ?? AppColors().hSecond1,
             ),
           ),
           onPressed: () => widget.onRightButtonClick(context),
@@ -82,7 +82,7 @@ Future openAppAlertDialog(
     context: context,
     pageBuilder: (context, anim1, anim2) {
       return Theme(
-        data: tdMain(context),
+        data: defaultTheme(context),
         child: AppAlertDialog(
           title: title,
           message: message,

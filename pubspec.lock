@@ -9,6 +9,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "61.0.0"
+  analysis_server_lib:
+    dependency: transitive
+    description:
+      name: analysis_server_lib
+      sha256: b2376eed26c183d8c9790444384082ba637aa87cd9b28bb9a84801e7fe37ea40
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.5"
   analyzer:
     dependency: transitive
     description:
@@ -17,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.13.0"
+  ansi_escapes:
+    dependency: transitive
+    description:
+      name: ansi_escapes
+      sha256: e2a111254904ff663b8d4be744073f7e327157c895a0ad57ad8de7938297bc8c
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   args:
     dependency: transitive
     description:
@@ -33,6 +49,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  azure_application_insights:
+    dependency: "direct main"
+    description:
+      name: azure_application_insights
+      sha256: "87b52ad947f5d670f7928f30f2b4b0ac11fd3a18ff33aa1a644fdd3b3bfea32f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   bloc:
     dependency: transitive
     description:
@@ -241,6 +265,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
+  dartz:
+    dependency: "direct main"
+    description:
+      name: dartz
+      sha256: e6acf34ad2e31b1eb00948692468c30ab48ac8250e0f0df661e29f12dd252168
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.10.1"
   diff_match_patch:
     dependency: transitive
     description:
@@ -350,6 +382,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.1"
+  flutter_easyloading:
+    dependency: "direct main"
+    description:
+      name: flutter_easyloading
+      sha256: ba21a3c883544e582f9cc455a4a0907556714e1e9cf0eababfcb600da191d17c
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.5"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -441,10 +481,10 @@ packages:
     dependency: "direct main"
     description:
       name: google_fonts
-      sha256: "2776c66b3e97c6cdd58d1bd3281548b074b64f1fd5c8f82391f7456e38849567"
+      sha256: "6b6f10f0ce3c42f6552d1c70d2c28d764cf22bb487f50f66cca31dcd5194f4d6"
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.5"
+    version: "4.0.4"
   graphs:
     dependency: transitive
     description:
@@ -453,14 +493,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
-  http:
-    dependency: transitive
+  hive:
+    dependency: "direct main"
     description:
-      name: http
-      sha256: "759d1a329847dd0f39226c688d3e06a6b8679668e350e2891a6474f8b4bb8525"
+      name: hive
+      sha256: "8dcf6db979d7933da8217edcec84e9df1bdb4e4edc7fc77dbd5aa74356d6d941"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "2.2.3"
+  http:
+    dependency: "direct main"
+    description:
+      name: http
+      sha256: "5895291c13fa8a3bd82e76d5627f69e0d85ca6a30dcac95c4ea19a5d555879c2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.13.6"
   http_multi_server:
     dependency: transitive
     description:
@@ -1286,18 +1334,18 @@ packages:
     dependency: "direct main"
     description:
       name: welltested
-      sha256: "561b7da272cb8e81d9ffbf057c84095c202aeaf207d3252357dadc7d4c11f392"
+      sha256: "749dbac9c104f617d6b86a28834f8e1634514ef2da6a9eea01f79493160fcec4"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.1"
-  welltested_gen:
+    version: "2.1.5"
+  welltested_annotation:
     dependency: transitive
     description:
-      name: welltested_gen
-      sha256: "9421c92ac1c58b76b5a6566390db62e08a64774d42a20e5647c3b36d5ac5023e"
+      name: welltested_annotation
+      sha256: "4177ac63ade38c9774e3269fc0752a03c08232d9aa452ba68e722887ce1be86b"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.1"
+    version: "1.0.1"
   win32:
     dependency: transitive
     description:

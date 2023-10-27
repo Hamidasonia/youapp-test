@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:youapp_test/common/styles.dart';
+import 'package:youapp_test/core/core.dart';
 
 class ExitDialog extends StatelessWidget {
   const ExitDialog({Key? key}) : super(key: key);
@@ -75,7 +75,7 @@ class ExitDialog extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
-                                color: hSecond2,
+                                color: AppColors().hSecond2,
                               ),
                             ),
                           ),
