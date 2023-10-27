@@ -3,11 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:youapp_test/core/core.dart';
 import 'package:youapp_test/features/auth/auth.dart';
 import 'package:youapp_test/features/home/home.dart';
+import 'package:welltested_annotation/welltested_annotation.dart';
 
 part 'home_event.dart';
 
 part 'home_state.dart';
 
+@Welltested()
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc({
     required this.updateProfileUseCase,

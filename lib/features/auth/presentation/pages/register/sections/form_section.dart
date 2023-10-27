@@ -186,6 +186,10 @@ class _FormSectionState extends State<_FormSection> {
                                     username: _cUsername.text,
                                     password: _cPassword.text,
                                   )));
+                              _cEmail.clear();
+                              _cUsername.clear();
+                              _cPassword.clear();
+                              _cConfirmPassword.clear();
                             }
                           }
                         }
